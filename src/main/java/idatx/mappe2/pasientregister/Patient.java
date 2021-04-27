@@ -4,17 +4,18 @@ package idatx.mappe2.pasientregister;
  * Patient class with all values of a patient.
  */
 public class Patient {
-  private int socialSecurityNumber;
   private String firstName;
   private String lastName;
-  private String diagnosis;
   private String generalPractitioner;
+  private String socialSecurityNumber;
+  private String diagnosis;
 
-  public Patient(int socialSecurityNumber,
+  public Patient(
                  String firstName,
                  String lastName,
-                 String diagnosis,
-                 String generalPractitioner) {
+                 String generalPractitioner,
+                 String socialSecurityNumber,
+                 String diagnosis) {
     this.socialSecurityNumber = socialSecurityNumber;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -26,7 +27,7 @@ public class Patient {
    * Return social security number of patient.
    * @return social security number.
    */
-  public int getSocialSecurityNumber() {
+  public String getSocialSecurityNumber() {
     return socialSecurityNumber;
   }
 

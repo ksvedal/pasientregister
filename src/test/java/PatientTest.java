@@ -4,35 +4,35 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PatientTest {
-  Patient patient = new Patient(2, "boB", "Vekke", "Mageknip", "Christian Bale");
+  Patient patient = new Patient("FN", "LN", "GP", "SSN", "D");
 
   @Test
   public void getSocialSecurityNumberTest() {
-    assertEquals(2, this.patient.getSocialSecurityNumber());
+    assertEquals("SSN", this.patient.getSocialSecurityNumber());
   }
 
   @Test
   public void getFirstNameTest() {
-    assertEquals("boB", this.patient.getFirstName());
+    assertEquals("FN", this.patient.getFirstName());
   }
 
   @Test
   public void getLastNameTest() {
-    assertEquals("Vekke", this.patient.getLastName());
+    assertEquals("LN", this.patient.getLastName());
   }
 
   @Test
   public void getFullNameTest() {
-    assertEquals("boB Vekke", patient.getFullName());
+    assertEquals("FN LN", patient.getFullName());
   }
 
   @Test
   public void getDiagnosisTest() {
-    assertEquals("Mageknip", patient.getDiagnosis());
+    assertEquals("D", patient.getDiagnosis());
   }
 
   @Test
   public void getGeneralPractitionerTest() {
-    assertEquals("Christian Bale", patient.getGeneralPractitioner());
+    assertEquals("GP", patient.getGeneralPractitioner());
   }
 }

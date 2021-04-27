@@ -1,5 +1,8 @@
 package idatx.mappe2.pasientregister;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,8 +13,6 @@ import java.util.List;
  */
 public class PatientRegister {
   private ArrayList<Patient> patients;
-  private Patient patient1;
-  private Patient patient2;
 
   /**
    * Constructor of PatientRegister.
@@ -20,11 +21,30 @@ public class PatientRegister {
     this.patients = new ArrayList<>();
   }
 
-  public void fillWithPatients() {
-    patient1 = new Patient(123, "Bob", "Skva", "dårleg i magen", "bob sagan");
-    patient2 = new Patient(123445, "fddsf", "dsffds", "dårleg i taket", "bob sagan");
-    this.patients.add(patient1);
-    this.patients.add(patient2);
+  /**
+   * Imports the patients.csv file to the patients arraylist.
+   * @return import success or failure
+   */
+  public boolean importPatients() {
+    String path = "src/main/resources/patients.csv";
+    String line = "";
+    boolean success = false;
+
+    try {
+      BufferedReader br = new BufferedReader(new FileReader(path));
+
+      //Dodge the first line of the csv file (Title bars).
+      br.readLine();
+
+      while((line = br.readLine()) !=null) {
+        String[] values = line.split(";");
+        patients.add(new Patient(values[0], values[1], values[2], values[3], "Diagnosis"));
+      }
+      success = true;
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return success;
   }
 
   /**
