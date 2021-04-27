@@ -8,6 +8,9 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
+/**
+ * Sets up main scene.
+ */
 public class App extends Application {
 
   @Override

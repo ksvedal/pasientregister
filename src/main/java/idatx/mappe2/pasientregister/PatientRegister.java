@@ -1,6 +1,7 @@
 package idatx.mappe2.pasientregister;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * PatientRegister class.
@@ -8,13 +9,22 @@ import java.util.HashMap;
  * security number as Key.
  */
 public class PatientRegister {
-  private HashMap<Integer, Patient> patients;
+  private ArrayList<Patient> patients;
+  private Patient patient1;
+  private Patient patient2;
 
   /**
    * Constructor of PatientRegister.
    */
   public PatientRegister() {
-    patients = new HashMap<>();
+    this.patients = new ArrayList<>();
+  }
+
+  public void fillWithPatients() {
+    patient1 = new Patient(123, "Bob", "Skva", "dårleg i magen", "bob sagan");
+    patient2 = new Patient(123445, "fddsf", "dsffds", "dårleg i taket", "bob sagan");
+    this.patients.add(patient1);
+    this.patients.add(patient2);
   }
 
   /**
@@ -22,14 +32,14 @@ public class PatientRegister {
    * @param patient patient to add.
    */
   public void addPatient(Patient patient) {
-    this.patients.put(patient.getSocialSecurityNumber(), patient);
+    this.patients.add(patient);
   }
 
   /**
    * Returns the patients HashMap of the hospital.
    * @return patients in the hospital.
    */
-  public HashMap getPatients() {
+  public List getPatients() {
     return this.patients;
   }
 }
