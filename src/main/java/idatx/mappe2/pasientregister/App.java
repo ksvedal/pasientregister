@@ -15,11 +15,8 @@ public class App extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    URL url = getClass().getClassLoader()
-        .getResource("application.fxml");
-
+    URL url = getClass().getClassLoader().getResource("application.fxml");
     Parent root = FXMLLoader.load(url);
-
     Scene scene = new Scene(root);
 
     stage.setTitle("Pasientregister");

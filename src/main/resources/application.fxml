@@ -19,14 +19,14 @@
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Add new patient" />
-                        <MenuItem mnemonicParsing="false" text="Remove selected patient" />
-                        <MenuItem mnemonicParsing="false" text="Edit selected patient" />
+                    <MenuItem fx:id="addPatient" mnemonicParsing="false" onAction="#addNewPatientButton" text="Add new patient" />
+                        <MenuItem mnemonicParsing="false" onAction="#removePatientButton" text="Remove selected patient" />
+                        <MenuItem mnemonicParsing="false" onAction="#editPatientButton" text="Edit selected patient" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
+                    <MenuItem fx:id="about" mnemonicParsing="false" onAction="#openAboutDialog" text="About" />
                   </items>
                 </Menu>
               </menus>
@@ -35,19 +35,18 @@
       </AnchorPane>
       <AnchorPane layoutY="32.0" prefHeight="674.0" prefWidth="999.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="32.0">
          <children>
-            <TextField fx:id="importStatus" editable="false" layoutX="7.0" layoutY="272.0" mouseTransparent="true" promptText="STATUS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
-            <TableView fx:id="patientsTableView" layoutX="83.0" prefHeight="612.0" prefWidth="916.0" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <TableView fx:id="patientsTableView" layoutX="83.0" prefHeight="668.0" prefWidth="910.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
               <columns>
                 <TableColumn fx:id="patientFirstName" editable="false" prefWidth="143.0" text="First name" />
-                <TableColumn fx:id="paientLastName" prefWidth="146.0" text="Last name" />
+                <TableColumn fx:id="patientLastName" prefWidth="146.0" text="Last name" />
                 <TableColumn fx:id="patientSocialSecurityNumber" prefWidth="114.0" text="SSN" />
                   <TableColumn fx:id="patientGeneralPractitioner" prefWidth="178.0" text="General Practitioner" />
-                  <TableColumn fx:id="patientDiagnosis" prefWidth="316.0" text="Diagnosis" />
+                  <TableColumn fx:id="patientDiagnosis" prefWidth="312.0" text="Diagnosis" />
               </columns>
             </TableView>
-            <Button layoutX="6.0" mnemonicParsing="false" onAction="#addPerson" prefHeight="61.0" prefWidth="71.0" text="Add " />
-            <Button layoutX="6.0" layoutY="68.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="71.0" text="Remove" />
-            <Button layoutX="6.0" layoutY="137.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="71.0" text="Edit" />
+            <Button layoutX="6.0" mnemonicParsing="false" onAction="#addNewPatientButton" prefHeight="61.0" prefWidth="71.0" text="Add " />
+            <Button layoutX="6.0" layoutY="68.0" mnemonicParsing="false" onAction="#removePatientButton" prefHeight="61.0" prefWidth="71.0" text="Remove" />
+            <Button layoutX="6.0" layoutY="137.0" mnemonicParsing="false" onAction="#editPatientButton" prefHeight="61.0" prefWidth="71.0" text="Edit" />
          </children>
       </AnchorPane>
    </children>

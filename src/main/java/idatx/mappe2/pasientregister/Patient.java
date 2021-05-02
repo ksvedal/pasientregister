@@ -1,7 +1,7 @@
 package idatx.mappe2.pasientregister;
 
 /**
- * Patient class with all values of a patient.
+ * Represents a patient with all values of a patient.
  */
 public class Patient {
   private String firstName;
@@ -69,6 +69,46 @@ public class Patient {
    */
   public String getGeneralPractitioner() {
     return this.generalPractitioner;
+  }
+
+  /**
+   * Set first name of patient.
+   * @param firstName first name to set.
+   */
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  /**
+   * Set last name of patient.
+   * @param lastName last name to set.
+   */
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  /**
+   * Set general practitioner of patient
+   * @param generalPractitioner General practitioner to set.
+   */
+  public void setGeneralPractitioner(String generalPractitioner) {
+    this.generalPractitioner = generalPractitioner;
+  }
+
+  /**
+   * Set social security number of patient.
+   * @param socialSecurityNumber Social security number to set.
+   */
+  public void setSocialSecurityNumber(String socialSecurityNumber) {
+    this.socialSecurityNumber = socialSecurityNumber;
+  }
+
+  /**
+   * Set diagnosis of patient.
+   * @param diagnosis Diagnosis to set.
+   */
+  public void setDiagnosis(String diagnosis) {
+    this.diagnosis = diagnosis;
   }
 
   @Override

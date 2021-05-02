@@ -35,10 +35,17 @@ public class PatientRegister {
 
       //Dodge the first line of the csv file (Title bars).
       br.readLine();
+      String diagnosis;
 
       while((line = br.readLine()) !=null) {
         String[] values = line.split(";");
-        patients.add(new Patient(values[0], values[1], values[2], values[3], "Diagnosis"));
+
+        try {
+          diagnosis = values[4];
+        } catch (IndexOutOfBoundsException e) {
+          diagnosis = "[Undiagnosed]";
+        }
+        patients.add(new Patient(values[0], values[1], values[2], values[3], diagnosis));
       }
       success = true;
     } catch (IOException e) {
@@ -56,7 +63,7 @@ public class PatientRegister {
   }
 
   /**
-   * Returns the patients HashMap of the hospital.
+   * Returns the patients ArrayList of the hospital.
    * @return patients in the hospital.
    */
   public List getPatients() {
