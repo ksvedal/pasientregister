@@ -113,6 +113,6 @@ public class Patient {
 
   @Override
   public String toString() {
-    return "Patient: " + socialSecurityNumber + ", " + firstName + " " + lastName + ", " + diagnosis + ", " + generalPractitioner;
+    return firstName+";"+lastName+";"+generalPractitioner+";"+socialSecurityNumber+";"+diagnosis;
   }
 }

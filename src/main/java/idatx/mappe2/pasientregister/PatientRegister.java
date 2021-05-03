@@ -1,8 +1,6 @@
 package idatx.mappe2.pasientregister;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,15 +21,22 @@ public class PatientRegister {
 
   /**
    * Imports the patients.csv file to the patients arraylist.
+   * If path to import parameter is empty, will be set to the standard patients.csv file in resources.
    * @return import success or failure
    */
-  public boolean importPatients() {
-    String path = "src/main/resources/patients.csv";
+  public boolean importPatients(String path) throws IOException {
+    patients.clear();
+    String newPath = "";
+    if (path.isEmpty()) {
+      newPath = "src/main/resources/patients.csv";
+    } else {
+      newPath = path;
+    }
+
     String line = "";
     boolean success = false;
 
-    try {
-      BufferedReader br = new BufferedReader(new FileReader(path));
+      BufferedReader br = new BufferedReader(new FileReader(newPath));
 
       //Dodge the first line of the csv file (Title bars).
       br.readLine();
@@ -47,11 +52,27 @@ public class PatientRegister {
         }
         patients.add(new Patient(values[0], values[1], values[2], values[3], diagnosis));
       }
+
       success = true;
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+      br.close();
+
+
     return success;
+  }
+
+  public void exportPatients(String path) throws IOException {
+    File file = new File(path);
+    FileWriter fileWriter = new FileWriter(file);
+    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+    bufferedWriter.write("Patients:");
+    bufferedWriter.newLine();
+    for (int i = 0; i < getPatients().size(); i++) {
+      bufferedWriter.write(getPatients().get(i) + ";\n");
+    }
+
+    bufferedWriter.close();
+    fileWriter.close();
   }
 
   /**

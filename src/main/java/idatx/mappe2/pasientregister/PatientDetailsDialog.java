@@ -131,7 +131,4 @@ public class PatientDetailsDialog extends Dialog<Patient> {
       }
     });
   }
-
-
-
 }

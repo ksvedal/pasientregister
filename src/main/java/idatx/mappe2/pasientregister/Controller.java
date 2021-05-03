@@ -7,8 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -18,15 +19,22 @@ import java.util.ResourceBundle;
  * the view of the patients register.
  */
 public class Controller implements Initializable {
+
   private PatientRegister patientRegister;
   private ObservableList<Patient> observablePatientsList;
 
+  @FXML
+  private Button importFromCSVButton;
+  @FXML
+  private Button exportToCSVButton;
   @FXML
   private Button editPatientButton;
   @FXML
   private Button removePatientButton;
   @FXML
   private Button addNewPatientButton;
+  @FXML
+  private TextField importStatus;
   @FXML
   private TableView<Patient> patientsTableView;
   @FXML
@@ -56,7 +64,12 @@ public class Controller implements Initializable {
 
   @Override
   public void initialize(URL url, ResourceBundle resourceBundle) {
-    this.patientRegister.importPatients();
+    try {
+      this.patientRegister.importPatients("");
+      importStatus.setText("Import successful");
+    } catch (IOException e) {
+      importStatus.setText("Error importing "+ e.getMessage());
+    }
 
     //Creating columns
     this.patientFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -67,6 +80,54 @@ public class Controller implements Initializable {
 
     this.observablePatientsList = FXCollections.observableArrayList(this.patientRegister.getPatients());
     this.patientsTableView.setItems(this.observablePatientsList);
+  }
+
+  /**
+   * Button to import from csv.
+   * Sets import status bar to reflect if import was successfull or not,
+   * and shows error from the exception if it failed.
+   */
+  @FXML
+  public void importFromCSVButton() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Import csv file.");
+    FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("csv.", "*.csv");
+    fileChooser.getExtensionFilters().add(extensionFilter);
+
+    File file = fileChooser.showOpenDialog(null);
+    if (file != null) {
+      String path = file.getAbsolutePath();
+      try {
+        patientRegister.importPatients(path);
+        importStatus.setText("Import successful");
+        this.updateObservableList();
+      } catch (IOException e) {
+        importStatus.setText("Error importing "+ e.getMessage());
+      }
+    }
+  }
+
+  /**
+   * Button to export to csv.
+   * Sets import status bar to reflect if export was successfull or not,
+   * and shows error from the exception if it failed.
+   */
+  @FXML
+  public void exportToCSVButton() {
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Export csv file.");
+    FileChooser.ExtensionFilter extensionFilter = new FileChooser.ExtensionFilter("csv.", "*.csv");
+    fileChooser.getExtensionFilters().add(extensionFilter);
+
+    File file = fileChooser.showSaveDialog(null);
+    if (file != null) {
+      String path = file.getAbsolutePath();
+      try {
+        patientRegister.exportPatients(path);
+      } catch (IOException e) {
+        importStatus.setText("Error importing "+ e.getMessage());
+      }
+    }
   }
 
   /**
@@ -110,7 +171,6 @@ public class Controller implements Initializable {
       alert.setContentText("You need to select a patient from the list before editing");
       alert.showAndWait();
     }
-
   }
 
   /**
@@ -121,7 +181,8 @@ public class Controller implements Initializable {
   public void removePatientButton() {
       Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
       if (patientsTableView.getItems().contains(patient)) {
-        patientsTableView.getItems().removeAll(patient);
+        patientRegister.getPatients().remove(patient);
+        updateObservableList();
       } else {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setHeaderText("No patient selected");
@@ -134,6 +195,7 @@ public class Controller implements Initializable {
    * Updates displayed observable patient list.
    */
   private void updateObservableList() {
+    this.observablePatientsList.clear();
     this.observablePatientsList.setAll(this.patientRegister.getPatients());
   }
 
