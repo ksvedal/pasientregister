@@ -68,7 +68,9 @@ public class PatientDetailsDialog extends Dialog<Patient> {
    */
   private void createContent() throws IOException {
     setTitle("Patient details");
+
     getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+
 
     // Configure grid
     GridPane grid = new GridPane();
@@ -103,7 +105,8 @@ public class PatientDetailsDialog extends Dialog<Patient> {
     grid.add(diagnosis, 1, 4);
 
     getDialogPane().setContent(grid);
-
+    getDialogPane().getStyleClass().add("customDialog");
+    getDialogPane().getStylesheets().add("patientregister.css");
 
 
     // Converts the result to patient instance when ok is pressed.

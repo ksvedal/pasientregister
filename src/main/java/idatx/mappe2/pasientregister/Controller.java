@@ -13,6 +13,7 @@ import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import idatx.mappe2.pasientregister.App;
 
 /**
  * Controller for main application. Handles all buttons and
@@ -22,11 +23,14 @@ public class Controller implements Initializable {
 
   private PatientRegister patientRegister;
   private ObservableList<Patient> observablePatientsList;
+  private AlertFactory alertFactory;
 
   @FXML
   private Button importFromCSVButton;
   @FXML
   private Button exportToCSVButton;
+  @FXML
+  private javafx.scene.control.Button closeButton;
   @FXML
   private Button editPatientButton;
   @FXML
@@ -52,6 +56,7 @@ public class Controller implements Initializable {
    * Creates an instance of the Controller.
    */
   public Controller() {
+    alertFactory = alertFactory.getInstance();
     patientRegister = new PatientRegister();
 
     this.patientsTableView = new TableView<>();
@@ -131,6 +136,15 @@ public class Controller implements Initializable {
   }
 
   /**
+   * Button that exits the application.
+   */
+  @FXML
+  public void closeButton() {
+    App app = new App();
+    app.stop();
+  }
+
+  /**
    * Button to add new patient through custom dialog.
    * Shows alert if all fields not correctly filled out.
    */
@@ -166,9 +180,7 @@ public class Controller implements Initializable {
       pDialog.showAndWait();
       updateObservableList();
     } catch (NullPointerException | IOException e) {
-      Alert alert = new Alert(Alert.AlertType.WARNING);
-      alert.setHeaderText("No patient selected");
-      alert.setContentText("You need to select a patient from the list before editing");
+      Alert alert = alertFactory.noPatientSelectedDialog();
       alert.showAndWait();
     }
   }
@@ -180,13 +192,15 @@ public class Controller implements Initializable {
   @FXML
   public void removePatientButton() {
       Patient patient = patientsTableView.getSelectionModel().getSelectedItem();
+
       if (patientsTableView.getItems().contains(patient)) {
-        patientRegister.getPatients().remove(patient);
-        updateObservableList();
+        Alert alert = alertFactory.confirmDeletionDialog();
+        if (alert.showAndWait().get().getButtonData().isDefaultButton()) {
+          patientRegister.getPatients().remove(patient);
+          updateObservableList();
+        }
       } else {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setHeaderText("No patient selected");
-        alert.setContentText("You need to select a patient from the list before deleting");
+        Alert alert = alertFactory.noPatientSelectedDialog();
         alert.showAndWait();
       }
   }
@@ -203,9 +217,7 @@ public class Controller implements Initializable {
    * Opens about/info dialog.
    */
   public void openAboutDialog(ActionEvent event) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setHeaderText("About");
-    alert.setContentText("Hello this application was made by me thank");
+    Alert alert = this.alertFactory.aboutDialog();
     alert.showAndWait();
   }
 }

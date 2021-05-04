@@ -35,16 +35,17 @@ public class PatientRegister {
 
     String line = "";
     boolean success = false;
+    String diagnosis;
 
       BufferedReader br = new BufferedReader(new FileReader(newPath));
 
-      //Dodge the first line of the csv file (Title bars).
+      // Skip the first line of the csv file (Title bars).
       br.readLine();
-      String diagnosis;
-
       while((line = br.readLine()) !=null) {
         String[] values = line.split(";");
 
+        // Try-catch block checks if the fifth value (diagnosis) is out of bounds.
+        // If it is, sets the value in the arraylist to [Undiagnosed].
         try {
           diagnosis = values[4];
         } catch (IndexOutOfBoundsException e) {
@@ -56,10 +57,14 @@ public class PatientRegister {
       success = true;
       br.close();
 
-
     return success;
   }
 
+  /**
+   * Export items in patients arrayList to csv file that user selects.
+   * @param path Where to export.
+   * @throws IOException
+   */
   public void exportPatients(String path) throws IOException {
     File file = new File(path);
     FileWriter fileWriter = new FileWriter(file);
@@ -76,7 +81,7 @@ public class PatientRegister {
   }
 
   /**
-   * Adds a patient to the hospital HashMap with social security number as key.
+   * Adds a patient to the patientRegister ArrayList.
    * @param patient patient to add.
    */
   public void addPatient(Patient patient) {
