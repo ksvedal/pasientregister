@@ -14,6 +14,9 @@ public class PatientRegister {
 
   /**
    * Constructor of PatientRegister.
+   * Created an arraylist of patients.
+   * Could also have used a hashmap and used social security number as
+   * key, because all persons have a unique social security number.
    */
   public PatientRegister() {
     this.patients = new ArrayList<>();
@@ -45,11 +48,11 @@ public class PatientRegister {
         String[] values = line.split(";");
 
         // Try-catch block checks if the fifth value (diagnosis) is out of bounds.
-        // If it is, sets the value in the arraylist to [Undiagnosed].
+        // If it is, sets the value in the arraylist to null.
         try {
           diagnosis = values[4];
         } catch (IndexOutOfBoundsException e) {
-          diagnosis = "[Undiagnosed]";
+          diagnosis = null;
         }
         patients.add(new Patient(values[0], values[1], values[2], values[3], diagnosis));
       }
@@ -63,7 +66,7 @@ public class PatientRegister {
   /**
    * Export items in patients arrayList to csv file that user selects.
    * @param path Where to export.
-   * @throws IOException
+   * @throws IOException IOException thrown from filewriter.
    */
   public void exportPatients(String path) throws IOException {
     File file = new File(path);
@@ -84,7 +87,7 @@ public class PatientRegister {
    * Adds a patient to the patientRegister ArrayList.
    * @param patient patient to add.
    */
-  public void addPatient(Patient patient) {
+  public void addPatient(Patient patient) throws IllegalArgumentException {
     this.patients.add(patient);
   }
 
@@ -92,7 +95,7 @@ public class PatientRegister {
    * Returns the patients ArrayList of the hospital.
    * @return patients in the hospital.
    */
-  public List getPatients() {
+  public List<Patient> getPatients() {
     return this.patients;
   }
 }

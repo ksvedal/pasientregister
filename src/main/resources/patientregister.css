@@ -7,7 +7,7 @@
 /* Customization of buttons */
 .Button {
     -fx-font-size: 10pt;
-    -fx-background-color: #504161;
+    -fx-background-color: #8a3860;
     -fx-text-fill: white;
     -fx-background-radius: 3;
     -fx-font-weight: bold;
@@ -104,8 +104,7 @@
 
 .customDialog .button {
     -fx-font-size: 10pt;
-    -fx-background-color: #504161;
-    -fx-text-fill: white;
+    -fx-background-color: #ffdd7d;
     -fx-background-radius: 2;
     -fx-font-weight: bold;
 }

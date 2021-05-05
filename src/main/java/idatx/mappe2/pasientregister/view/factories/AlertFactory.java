@@ -4,8 +4,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 
 /**
- * Class responsible for creating alert dialogs to show the user and apply.
+ * Class responsible for creating alert dialogs to show the user and apply
  * stylesheet to them.
+ * Also a response to task 3 along with UIFactory.
  */
 public class AlertFactory {
   private static AlertFactory instance;
@@ -47,6 +48,18 @@ public class AlertFactory {
     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
     alert.setHeaderText("Are you sure?");
     alert.setContentText("Are you sure you want to delete this patient?");
+
+    //Styling
+    DialogPane dialogPane = alert.getDialogPane();
+    dialogPane.getStylesheets().add("patientregister.css");
+    dialogPane.getStyleClass().add("customDialog");
+    return alert;
+  }
+
+  public Alert fieldNotFilled(String message) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setHeaderText("Insufficient input.");
+    alert.setContentText(message);
 
     //Styling
     DialogPane dialogPane = alert.getDialogPane();

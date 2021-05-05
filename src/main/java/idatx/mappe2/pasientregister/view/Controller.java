@@ -20,6 +20,8 @@ import java.util.ResourceBundle;
 /**
  * Controller for main application. Handles all buttons and
  * the view of the patients register.
+ *
+ * Creates an instance of PatientRegister, ObservableList<Patient>, and AlertFactory.
  */
 public class Controller implements Initializable {
 
@@ -91,7 +93,8 @@ public class Controller implements Initializable {
 
   /**
    * Button to import from csv.
-   * Sets import status bar to reflect if import was successfull or not,
+   * The Filechooser only lets user select .csv-files.
+   * Sets import status bar to reflect if import was successful or not,
    * and shows error from the exception if it failed.
    */
   @FXML
@@ -116,6 +119,8 @@ public class Controller implements Initializable {
 
   /**
    * Button to export to csv.
+   * The Filechooser only lets the user save as csv file.
+   * If a file already exists, the Filechooser asks the user if they wants to overwrite.
    * Sets import status bar to reflect if export was successfull or not,
    * and shows error from the exception if it failed.
    */
@@ -152,7 +157,6 @@ public class Controller implements Initializable {
    */
   @FXML
   public void addNewPatientButton() {
-    try {
       PatientDetailsDialog pDialog = new PatientDetailsDialog();
 
       Optional<Patient> result = pDialog.showAndWait();
@@ -162,13 +166,8 @@ public class Controller implements Initializable {
         patientRegister.addPatient(patient);
         updateObservableList();
       }
-    } catch (IOException e) {
-      Alert alert = new Alert(Alert.AlertType.WARNING);
-      alert.setHeaderText("All fields must be filled out");
-      alert.setContentText("Fill out all fields before adding.");
-      alert.showAndWait();
-    }
   }
+
 
   /**
    * Button to edit the selected patient through a custom dialog.
@@ -181,7 +180,7 @@ public class Controller implements Initializable {
       PatientDetailsDialog pDialog = new PatientDetailsDialog(patient);
       pDialog.showAndWait();
       updateObservableList();
-    } catch (NullPointerException | IOException e) {
+    } catch (NullPointerException  e) {
       Alert alert = alertFactory.noPatientSelectedDialog();
       alert.showAndWait();
     }

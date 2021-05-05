@@ -1,3 +1,5 @@
+package idatx.mappe2.pasientregister;
+
 import idatx.mappe2.pasientregister.model.Patient;
 import org.junit.jupiter.api.Test;
 

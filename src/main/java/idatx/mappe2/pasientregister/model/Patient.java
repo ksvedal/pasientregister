@@ -16,10 +16,10 @@ public class Patient {
                  String generalPractitioner,
                  String socialSecurityNumber,
                  String diagnosis) {
-    this.socialSecurityNumber = socialSecurityNumber;
+    this.setSocialSecurityNumber(socialSecurityNumber);
+    this.setDiagnosis(diagnosis);
     this.firstName = firstName;
     this.lastName = lastName;
-    this.diagnosis = diagnosis;
     this.generalPractitioner = generalPractitioner;
   }
 
@@ -96,19 +96,30 @@ public class Patient {
   }
 
   /**
-   * Set social security number of patient.
+   * Set social security number (as String) of patient.
+   * The social security number could have also been an int, but it is specified in the assignment that it
+   * is supposed be a String.
    * @param socialSecurityNumber Social security number to set.
    */
   public void setSocialSecurityNumber(String socialSecurityNumber) {
-    this.socialSecurityNumber = socialSecurityNumber;
+    if (socialSecurityNumber == null || socialSecurityNumber.isEmpty()) {
+      throw new IllegalArgumentException("Social security number can not be empty.");
+    } else {
+      this.socialSecurityNumber = socialSecurityNumber;
+    }
   }
 
   /**
    * Set diagnosis of patient.
+   * if the value recieved is null or empty, diagnosis is set to [Undiagnosed].
    * @param diagnosis Diagnosis to set.
    */
   public void setDiagnosis(String diagnosis) {
-    this.diagnosis = diagnosis;
+    if (diagnosis == null || diagnosis.isEmpty()) {
+      this.diagnosis = "[Undiagnosed]";
+    } else {
+      this.diagnosis = diagnosis;
+    }
   }
 
   @Override

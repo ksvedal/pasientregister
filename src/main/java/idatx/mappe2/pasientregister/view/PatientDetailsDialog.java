@@ -1,6 +1,7 @@
 package idatx.mappe2.pasientregister.view;
 
 import idatx.mappe2.pasientregister.model.Patient;
+import idatx.mappe2.pasientregister.view.factories.AlertFactory;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -19,6 +20,7 @@ import java.io.IOException;
  * @author Kristoffer Svedal
  */
 public class PatientDetailsDialog extends Dialog<Patient> {
+  private AlertFactory alertFactory;
 
   /**
    * Dialog mode. Can be opened in EDIT mode to edit selected
@@ -44,9 +46,10 @@ public class PatientDetailsDialog extends Dialog<Patient> {
    * @throws IOException Throws an IOException if fields have not
    * been properly filled out.
    */
-  public PatientDetailsDialog() throws IOException{
+  public PatientDetailsDialog() throws IllegalArgumentException {
     super();
     this.mode = Mode.NEW;
+
     createContent();
   }
 
@@ -56,7 +59,7 @@ public class PatientDetailsDialog extends Dialog<Patient> {
    * @param patient Patient to edit.
    * @throws IOException Throws if no patient is selected.
    */
-  public PatientDetailsDialog(Patient patient) throws IOException {
+  public PatientDetailsDialog(Patient patient) throws IllegalArgumentException {
     super();
     this.mode = Mode.EDIT;
     this.existingPatient = patient;
@@ -67,7 +70,8 @@ public class PatientDetailsDialog extends Dialog<Patient> {
    * Creates the content of the dialog.
    * @throws IOException
    */
-  private void createContent() throws IOException {
+  private void createContent() throws IllegalArgumentException {
+    this.alertFactory = alertFactory.getInstance();;
     setTitle("Patient details");
 
     getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
@@ -115,14 +119,14 @@ public class PatientDetailsDialog extends Dialog<Patient> {
       @Override
       public Patient call(ButtonType buttonType) {
         Patient result = null;
-
-        if (buttonType == ButtonType.OK) {
-          if (mode == Mode.NEW)
-          result = new Patient(firstName.getText(),
-              lastName.getText(),
-              generalPractitioner.getText(),
-              socialSecurityNumber.getText(),
-              diagnosis.getText());
+        try {
+          if (buttonType == ButtonType.OK) {
+            if (mode == Mode.NEW)
+              result = new Patient(firstName.getText(),
+                  lastName.getText(),
+                  generalPractitioner.getText(),
+                  socialSecurityNumber.getText(),
+                  diagnosis.getText());
           } else if (mode == Mode.EDIT) {
             existingPatient.setFirstName(firstName.getText());
             existingPatient.setLastName(lastName.getText());
@@ -131,6 +135,10 @@ public class PatientDetailsDialog extends Dialog<Patient> {
             existingPatient.setDiagnosis(diagnosis.getText());
             result = existingPatient;
           }
+        } catch (IllegalArgumentException e) {
+          Alert alert = alertFactory.fieldNotFilled(e.getMessage());
+          alert.showAndWait();
+        }
         return result;
       }
     });
