@@ -4,6 +4,7 @@ import idatx.mappe2.pasientregister.model.Patient;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 /**
  * Tests for Patient class.
@@ -84,7 +85,7 @@ public class PatientTest {
 
   /**
    * Tests that social security number can not be given empty string or null.
-   * (Positive)
+   * (Negative)
    * Assert social security number is the old one.
    */
   @Test
@@ -92,9 +93,10 @@ public class PatientTest {
     try {
       this.patient.setSocialSecurityNumber("");
       this.patient.setSocialSecurityNumber(null);
+      fail();
     } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
+      assertEquals("SSN", this.patient.getSocialSecurityNumber());
     }
-    assertEquals("SSN", this.patient.getSocialSecurityNumber());
   }
 }
