@@ -1,8 +1,6 @@
 .root {
    -fx-font-family: Calibri;
-   -fx-background-color: WHITE;
 }
-
 
 /* Customization of buttons */
 .Button {
@@ -52,7 +50,7 @@
 }
 
 .table-row-cell:selected {
-    -fx-background-color: #a6a6a6;
+    -fx-background-color: #ffdd7d;
     -fx-background-radius: 0;
 }
 

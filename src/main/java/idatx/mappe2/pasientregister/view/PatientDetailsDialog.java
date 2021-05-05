@@ -89,6 +89,7 @@ public class PatientDetailsDialog extends Dialog<Patient> {
     TextField generalPractitioner = new TextField();
     TextField diagnosis = new TextField();
 
+    // If mode is edit: Set values of textfields to that of selected patient.
     if (mode == Mode.EDIT) {
       firstName.setText(existingPatient.getFirstName());
       lastName.setText(existingPatient.getLastName());
@@ -97,12 +98,14 @@ public class PatientDetailsDialog extends Dialog<Patient> {
       diagnosis.setText(existingPatient.getDiagnosis());
     }
 
+    // Add labels to identify the text fields.
     grid.add(new Label("First name:"), 0, 0);
     grid.add(new Label("Last name:"), 0, 1);
     grid.add(new Label("Social Security number:"), 0, 2);
     grid.add(new Label("General Practitioner:"), 0, 3);
     grid.add(new Label("Diagnosis:"), 0, 4);
 
+    // Add the text fields themselves.
     grid.add(firstName, 1, 0);
     grid.add(lastName, 1,1);
     grid.add(socialSecurityNumber, 1, 2);
@@ -112,7 +115,6 @@ public class PatientDetailsDialog extends Dialog<Patient> {
     getDialogPane().setContent(grid);
     getDialogPane().getStyleClass().add("customDialog");
     getDialogPane().getStylesheets().add("patientregister.css");
-
 
     // Converts the result to patient instance when ok is pressed.
     setResultConverter(new Callback<ButtonType, Patient>() {
