@@ -1,0 +1,114 @@
+.root {
+   -fx-font-family: Calibri;
+}
+
+/* Customization of buttons */
+.Button {
+    -fx-font-size: 10pt;
+    -fx-background-color: #8a3860;
+    -fx-text-fill: white;
+    -fx-background-radius: 3;
+    -fx-font-weight: bold;
+}
+
+.Button:pressed {
+    -fx-padding: 2px 7px 7px 7px;
+}
+
+/* Customization of table view */
+.TableView {
+    -fx-background-color: WHITE;
+    -fx-text-fill: BLACK;
+}
+
+.TableView .table-cell {
+    -fx-text-fill: BLACK;
+}
+
+.TableView .column-header {
+    -fx-background-color: WHITE;
+}
+
+.TableView .column-header .label {
+  -fx-alignment: center-left;
+}
+
+.TableView .column-header-background .label{
+    -fx-background-color: WHITE;
+}
+
+
+.table-row-cell {
+    -fx-background-color: #f5f5f5;
+    -fx-table-cell-border-color: transparent;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0.0em;
+}
+
+.table-row-cell:odd {
+    -fx-background-color: WHITE;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #ffdd7d;
+    -fx-background-radius: 0;
+}
+
+.TableView *.scroll-bar:horizontal *.increment-button,
+.TableView *.scroll-bar:horizontal *.decrement-button {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+
+.TableView *.scroll-bar:horizontal *.increment-arrow,
+.TableView *.scroll-bar:horizontal *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 0;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.TableView *.scroll-bar:vertical {
+    -fx-background-color: null;
+}
+
+.TableView *.scroll-bar:vertical *.increment-arrow,
+.TableView *.scroll-bar:vertical *.decrement-arrow {
+    -fx-background-color: null;
+    -fx-background-radius: 2;
+    -fx-background-insets: 2;
+    -fx-padding: 0;
+}
+
+
+
+/* Customization of dialog pane */
+.customDialog{
+    -fx-background-color: WHITE;
+}
+.customDialog > *.label.content{
+    -fx-font-weight: bold;
+}
+.customDialog:header *.header-panel{
+    -fx-background-color: WHITE;
+}
+
+.customDialog:header *.header-panel *.label{
+    -fx-font-size: 18px;
+}
+
+.customDialog .button {
+    -fx-font-size: 10pt;
+    -fx-background-color: #ffdd7d;
+    -fx-background-radius: 2;
+    -fx-font-weight: bold;
+}
+.customDialog .button:pressed {
+    -fx-padding: 1px 7px 7px 7px;
+}
+
+
+
