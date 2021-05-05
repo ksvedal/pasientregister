@@ -1,4 +1,4 @@
-import idatx.mappe2.pasientregister.Patient;
+import idatx.mappe2.pasientregister.model.Patient;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

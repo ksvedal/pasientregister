@@ -45,7 +45,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.5</version>
                 <configuration>
-                    <mainClass>idatx.mappe2.pasientregister.App</mainClass>
+                    <mainClass>idatx.mappe2.pasientregister.view.App</mainClass>
                 </configuration>
             </plugin>
             <plugin>

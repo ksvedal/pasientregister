@@ -1,5 +1,6 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.view;
 
+import idatx.mappe2.pasientregister.model.Patient;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;

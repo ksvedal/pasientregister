@@ -1,5 +1,8 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.view;
 
+import idatx.mappe2.pasientregister.model.Patient;
+import idatx.mappe2.pasientregister.model.PatientRegister;
+import idatx.mappe2.pasientregister.view.factories.AlertFactory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +16,6 @@ import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import idatx.mappe2.pasientregister.App;
 
 /**
  * Controller for main application. Handles all buttons and

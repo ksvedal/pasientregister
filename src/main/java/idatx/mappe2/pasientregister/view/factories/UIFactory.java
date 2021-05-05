@@ -1,5 +1,6 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.view.factories;
 
+import idatx.mappe2.pasientregister.model.Patient;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -81,6 +82,7 @@ public class UIFactory {
 
   /**
    * Creates a tableview of the patient list.
+   * Takes in an observable list and retuns the tableview with all the columns of patient.
    * @param patientOList Observable list of patients that tableview will be created with.
    * @return Return a tableview of the patient list.
    */

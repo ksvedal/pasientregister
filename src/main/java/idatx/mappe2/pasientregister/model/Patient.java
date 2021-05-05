@@ -1,4 +1,4 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.model;
 
 /**
  * Represents a patient with all values of a patient.

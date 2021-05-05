@@ -1,10 +1,10 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.view.factories;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.DialogPane;
 
 /**
- * Class responsible for creating alert dialogs to show the user and apply
+ * Class responsible for creating alert dialogs to show the user and apply.
  * stylesheet to them.
  */
 public class AlertFactory {

@@ -1,5 +1,5 @@
-import idatx.mappe2.pasientregister.Patient;
-import idatx.mappe2.pasientregister.PatientRegister;
+import idatx.mappe2.pasientregister.model.Patient;
+import idatx.mappe2.pasientregister.model.PatientRegister;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

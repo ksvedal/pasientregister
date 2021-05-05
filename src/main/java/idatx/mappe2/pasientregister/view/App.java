@@ -1,17 +1,13 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.view;
 
+import idatx.mappe2.pasientregister.model.Patient;
+import idatx.mappe2.pasientregister.model.PatientRegister;
+import idatx.mappe2.pasientregister.view.factories.UIFactory;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.net.URL;

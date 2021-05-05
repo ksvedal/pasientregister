@@ -1,4 +1,4 @@
-package idatx.mappe2.pasientregister;
+package idatx.mappe2.pasientregister.model;
 
 import java.io.*;
 import java.util.ArrayList;
